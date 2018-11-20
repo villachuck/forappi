@@ -223,6 +223,26 @@
 
             $scope.showCleanBtn = true;
         }
+            
+            
+        $scope.cleanFilter = function(){
+            var filteringBy = [];
+            $http.get('/app/json/products.json')
+            .then(function(data){
+                $scope.listOfProducts = data.data.products;
+
+                    for(var i = 0; i< $scope.listOfProducts.length; i++){
+                        if($scope.listOfProducts[i].sublevel_id === $scope.inside){
+                            filteringBy.push($scope.listOfProducts[i]);
+                        }
+                    }
+
+                    $scope.dataOnFilter = filteringBy;
+                    //console.log($scope.dataOnFilter);
+            });
+
+            $scope.showCleanBtn = false;
+        }            
 
 
         $scope.fromLessToMore = function(){
