@@ -9,7 +9,7 @@ Instalar http-server: npm install http-server -g
 
 Clonar repo: git clone https://github.com/villachuck/forappi.git
 
-Abrir el repo clonado: cd jr_test
+Abrir el repo clonado: cd forappi
 
 Abrir en el server: http-server -o
 
