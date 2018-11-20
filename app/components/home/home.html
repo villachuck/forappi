@@ -1,0 +1,328 @@
+<nav class="navbar navbar-light bg-light" style="background-color:#c43c00;width:100%;height:60px;margin-bottom:0;border-radius:0 !important;">
+    <div class="col-md-3" align="left">
+        <h2><strong>Tiendas El Baratón</strong></h2>
+    </div>
+    <div class="col-md-8" style="padding-top:12px;" align="center">
+        <input type="text" class="form-control" placeholder="Ingresa tu búsqueda"/>
+    </div>
+    <div class="col-md-1" align="center" style="position:static;">
+        <h3 ng-click="openCart()"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h3>
+    </div>
+</nav>
+
+<div class="panel" style="width:100%;height:100%;margin-bottom:0;padding-left:0;border:0;">
+
+    <div class="col-lg-2" style="height:100%;padding-left:0%;padding-right:0%;">
+        <nav class="navbar navbar-light bg-light" style="background-color:#ff6d00;width:100%;max-height:100%;position:relative;margin:0;border-radius:0 !important;">
+            <div class="col-lg-12">
+                <h4><strong>Nuestras categorías</strong></h4>
+            </div>
+
+            <div class="col-lg-12" style="background-color:#ff6d00;padding-left:0;padding-right:0;">
+                <ul style="padding-left:0;">
+                    <li style="padding-bottom:10px;" ng-repeat="category in categoriesList">
+                        <a style="padding-left:10px;">{{category.name}} <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+                        <ul class="list">
+                            <li ng-repeat="next in category.sublevels">
+                                <a ng-click="theSublevels(next)">{{next.name}}</a>
+                                <ul>
+                                    <li ng-repeat="other in next.sublevels">
+                                        <a ng-click="theSublevels(other)">{{other.name}}</a>
+                                        <ul>
+                                            <li ng-repeat="last in other.sublevels">
+                                                <a ng-click="theSublevels(last)">{{last.name}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+
+
+
+    <div class="col-lg-10" style="height:100%;padding-left:0%;padding-right:0%;">
+        <h3 style="color:black; padding-left:5px;">{{selection}}</h3>
+        <br>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <div class="col-lg-4">
+                    <div class="dropdown" ng-show="dataOnFilter.length > 0">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filtrar por
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="filterAvailable(true)">Disponibilidad</a></li>
+                            <li><a ng-click="openPriceFilter()">Precios</a></li>
+                            <li><a ng-click="openQuantityFilter()">Cantidad</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-secondary" ng-click="cleanFilter()" ng-show="showCleanBtn">Limpiar <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+            <div class="col-lg-6">
+                <div class="dropdown" ng-show="dataOnFilter.length > 0">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Ordenar por
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="fromLessToMore()">Menor a mayor precio</a></li>
+                        <li><a ng-click="fromMoreToLess()">Mayor a menor precio</a></li>
+                        <li><a ng-click="qtyAsc()">Menor a mayor cantidad</a></li>
+                        <li><a ng-click="qtyDesc()">Mayor a menor cantidad</a></li>
+                        <li><a ng-click="firstAvailables()">Disponibilidad</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-lg-12" ng-show="dataOnFilter.length < 1">
+            <h3 style="color:black;">Sin resultados</h3>
+        </div>
+        <div class="row" style="margin:0">
+            <ul ng-repeat="prod in dataOnFilter" class="listagem">
+                <li ng-class="{'break': $index % 2 === 0 }">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default" style="width:300px;height:250px;">
+                            <div class="panel-body">
+                                <h4 style="color:black;" align="center"><strong>{{prod.name}}</strong></h4>
+                                <hr>
+                                <div class="col-md-12" align="center">
+                                    <a class="sku"><strong>id:</strong> {{prod.id}}</a>
+                                </div>
+                                <br><br>
+                                <div class="col-sm-6" align="left">
+                                    <a class="price"><strong>{{prod.price}}</strong></a>
+                                </div>
+                                <div class="col-sm-6" align="right" ng-show="prod.available == true">
+                                    <a class="is-available"><strong>Disponible</strong></a>
+                                </div>
+                                <div class="col-sm-6" align="right" ng-show="prod.available == false">
+                                    <a class="not-available"><strong>No disponible</strong></a>
+                                </div>
+                                <br><br>
+                                <div class="col-sm-6" ng-show="prod.available == true">
+                                    <a class="qty">{{prod.quantity}} piezas</a>
+                                </div>
+                                <div class="col-sm-6"></div>
+                                <br><br>
+                                <div class="col-sm-12" align="center">
+                                    <button type="button" class="btn btn-cart" ng-show="prod.available == true" ng-click="addToCart(prod)">Agregar a carrito <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="priceModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p><strong>Selecciona un rango de precios</strong></p>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box1"> <a class="box-list">De $1,000 a $1,999</a>
+                </div>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box2"> <a class="box-list">De $2,000 a $2,999</a>
+                </div>
+                <br><br>
+                 <div class="col-lg-6" align="center">
+                     <input type="checkbox" name="box3"> <a class="box-list">De $3,000 a $3,999</a>
+                 </div>
+                 <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box4"> <a class="box-list">De $4,000 a $4,999</a>
+                 </div>
+                <br><br>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box5"> <a class="box-list">De $5,000 a $5,999</a>
+                </div>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box6"> <a class="box-list">De $6,000 a $6,999</a>
+                </div>
+                <br><br>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box7"> <a class="box-list">De $7,000 a $7,999</a>
+                </div>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box8"> <a class="box-list">De $8,000 a $8,999</a>
+                </div>
+                <br><br>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box9"> <a class="box-list">De $9,000 a $9,999</a>
+                </div>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box10"> <a class="box-list">De $10,000 a $10,999</a>
+                </div>
+                <br><br>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box11"> <a class="box-list">De $11,000 a $11,999</a>
+                </div>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box12"> <a class="box-list">De $12,000 a $12,999</a>
+                </div>
+                <br><br>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box13"> <a class="box-list">De $13,000 a $13,999</a>
+                </div>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box14"> <a class="box-list">De $14,000 a $14,999</a>
+                </div>
+                <br><br>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box15"> <a class="box-list">De $15,000 a $15,999</a>
+                </div>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box16"> <a class="box-list">De $16,000 a $16,999</a>
+                </div>
+                <br><br>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box17"> <a class="box-list">De $17,000 a $17,999</a>
+                </div>
+                <div class="col-lg-6" align="center">
+                    <input type="checkbox" name="box18"> <a class="box-list">De $18,000 a $18,999</a>
+                </div>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="filterPerPrice()">Filtrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="qtyModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p><strong>Selecciona una cantidad</strong></p>
+                <ul>
+                    <li>
+                        <input type="checkbox" name="boxQty1"> <a class="box-list">Desde 100 piezas</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="boxQty2"> <a class="box-list">Desde 200 piezas</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="boxQty3"> <a class="box-list">Desde 300 piezas</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="boxQty4"> <a class="box-list">Desde 400 piezas</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="boxQty5"> <a class="box-list">Desde 500 piezas</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="boxQty6"> <a class="box-list">Desde 600 piezas</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="boxQty7"> <a class="box-list">Desde 700 piezas</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="boxQty8"> <a class="box-list">Desde 800 piezas</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="boxQty9"> <a class="box-list">Desde 900 piezas</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="filterPerQty()">Filtrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="added">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p align="center"><strong>El producto fue añadido al carrito</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="empty-cart">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 style="color:#ff6d00"><strong><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mi carrito</strong></h4>
+                <p align="center"><strong>El carrito se encuentra vacío :( <br> ¿Y si agregas algo al carrito y te lo llevas? ;)</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="cart">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 style="color:#ff6d00"><strong><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mi carrito</strong></h4>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="text-align:center">Producto</th>
+                            <th style="text-align:center">Precio</th>
+                            <th style="text-align:center;width:200px">Cantidad</th>
+                            <th style="text-align:center">Quitar del carrito</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in myItems">
+                            <th style="font-weight:normal;text-align:center">{{item.name}}</th>
+                            <th style="font-weight:normal;text-align:center">{{item.price}}</th>
+                            <th style="font-weight:normal;text-align:center;padding-left: 0px;padding-right: 0px;">
+                                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 0px;width:100%" align="center">
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <button type="button" class="btn btn-add-less" ng-click="subtractQuantity(item)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                                    </div>
+                                    <div class="input-group" align="center" style="width:90px;margin-left: 0px;">
+                                        <input type="text" class="algo" id="theBox-{{ item.name }}" value="1" style="width:40%" >
+                                    </div>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group" align="center">
+                                        <button type="button" class="btn btn-add-less" ng-click="sumQuantity(item)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th style="font-weight:normal;text-align:center">
+                                <button type="button" class="btn btn-remove" ng-click="deleteItem(item)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-remove" data-dismiss="modal" ng-click="removeAllItems()">Vaciar carrito</button>
+                <button type="button" class="btn btn-empty" data-dismiss="modal" ng-click="removeAllItems()">Finalizar compra</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,359 @@
+body {
+    background-color: white;
+}
+
+h2 {
+    color: white;
+    margin-top: 12px;
+}
+
+h4 {
+    color: white;
+}
+
+h5 {
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+ul {
+    list-style-type: square;
+    margin: 0;
+    padding-top: 13px;
+    overflow: hidden;
+    color: white;
+}
+
+.listagem {
+    float: left;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+a:hover {
+    color: white;
+}
+
+a:focus {
+    color: white;
+}
+
+a:active {
+    color: white;
+}
+
+h3 {
+    color: white;
+    margin-top: 15px;
+}
+
+.glyphicon {
+    cursor: pointer;
+}
+
+.submenu {
+    display: none;
+}
+
+.sub-sublevel {
+    left: 15%;
+}
+
+.one:hover {
+    background-color: #ff9e40;
+    cursor: pointer;
+}
+
+.two:hover {
+    background-color: #ff9e40;
+    cursor: pointer;
+}
+
+.three:hover {
+    background-color: #ff9e40;
+    cursor: pointer;
+}
+
+.four:hover {
+    background-color: #ff9e40;
+    cursor: pointer;
+}
+
+.list {
+    background-color: #ff9e40;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#first-down {
+    display: none;
+}
+
+#second-down {
+    display: none;
+}
+
+#breakfastSpecials {
+    display: none;
+}
+
+#last-breakfast {
+    display: none;
+}
+
+#third-down {
+    display: none;
+}
+
+#fourth-down {
+    display: none;
+}
+
+#soda {
+    display: none;
+}
+
+hr {
+    margin-bottom: 0;
+}
+
+.detail-product {
+    color: black;
+    cursor: text;
+    text-decoration: none;
+}
+
+.detail-product:hover {
+    color: black;
+    cursor: text;
+    text-decoration: none;
+}
+
+
+.sku {
+    color: black;
+    cursor: text;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.sku:hover {
+    color: black;
+    cursor: text;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.price {
+    color: red;
+    cursor: text;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.price:hover {
+    color: red;
+    cursor: text;
+    text-decoration: none;
+}
+
+.is-available {
+    color: #c43c00;
+    cursor: text;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.is-available:hover {
+    color: #c43c00;
+    cursor: text;
+    text-decoration: none;
+}
+
+.not-available {
+    color: #919395;
+    cursor: text;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.not-available:hover {
+    color: black;
+    cursor: text;
+    text-decoration: none;
+}
+
+.qty {
+    color: black;
+    cursor: text;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.qty:hover {
+    color: black;
+    cursor: text;
+    text-decoration: none;
+}
+
+.btn-cart {
+    background-color: #ff5131;
+    border-color: #ff5131;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-cart:hover {
+    background-color: #ff855d;
+    border-color: #ff855d;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-cart:active {
+    background-color: #ff5131;
+    border-color: #ff5131;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-cart:focus {
+    background-color: #ff5131;
+    border-color: #ff5131;
+    color: white;
+    font-weight: bold;
+}
+
+.box-list {
+    color: black;
+    text-decoration: none;
+    cursor: text;
+}
+
+.box-list:hover {
+    color: black;
+    text-decoration: none;
+    cursor: text;
+}
+
+.btn-primary {
+    background-color: #005662;
+    border-color: #005662;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #00838f;
+    border-color: #00838f;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-primary:active {
+    background-color: #00838f;
+    border-color: #00838f;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-primary:focus {
+    background-color: #00838f;
+    border-color: #00838f;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-secondary {
+    font-weight: bold;
+}
+
+.btn-add-less {
+    background-color: #c43c00;
+    border-color: #c43c00;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-add-less:hover {
+    background-color: #fe6d34;
+    border-color: #fe6d34;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-add-less:active {
+    background-color: #fe6d34;
+    border-color: #fe6d34;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-add-less:focus {
+    background-color: #fe6d34;
+    border-color: #fe6d34;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-remove {
+    background-color: #ff9e40;
+    border-color: #ff9e40;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-remove:hover {
+    background-color: #ff9e40;
+    border-color: #ff9e40;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-remove:active {
+    background-color: #ff9e40;
+    border-color: #ff9e40;
+    color: white;
+    font-weight: bold;
+}
+.btn-remove:focus {
+    background-color: #ff9e40;
+    border-color: #ff9e40;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-empty {
+    background-color: #ff6d00;
+    border-color: #ff6d00;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-empty:hover {
+    background-color: #ff6d00;
+    border-color: #ff6d00;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-empty:active {
+    background-color: #ff6d00;
+    border-color: #ff6d00;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-empty:focus {
+    background-color: #ff6d00;
+    border-color: #ff6d00;
+    color: white;
+    font-weight: bold;
+}
